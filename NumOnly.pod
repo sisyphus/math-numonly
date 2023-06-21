@@ -32,8 +32,8 @@
 
   No functions are provided, except for the subroutines that are responsible
   for overloading the  '+', '-', '*', '/', '**', '++', '--', '>=', '<=',
-  '==', '!=', '>', '<', '<=>', '""', '+=', '-=', '*=', '/=' and perhaps
-  other operations.
+  '==', '!=', '>', '<', '<=>', '""', '+=', '-=', '*=', '/=', '**=' and
+  perhaps other operations.
 
 =head1 LICENSE
 
