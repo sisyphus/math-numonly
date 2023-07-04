@@ -103,4 +103,13 @@ cmp_ok($new ** Math::NumOnly->new(0.5), '==', sqrt(11), 'oload_pow is correct wi
 eval{$dummy = $new ** '5';};
 like ($@, qr/^Bad argument given/, 'oload_pow croaks with string arg');
 
+require Math::BigInt;
+cmp_ok(Math::NumOnly::is_ok(Math::BigInt->new(2)), '==', 0, 'Math::BigInt object is rejected');
+
+eval { Math::NumOnly->new(7) + Math::BigInt->new(8); };
+like ($@, qr/^Bad argument given/, 'Math::BigInt object not allowed in addition (+)');
+
+eval { Math::NumOnly->new(8) - Math::BigInt->new(7); };
+like ($@, qr/^Bad argument given/, 'Math::BigInt object not allowed in subtraction (-)');
+
 done_testing();
