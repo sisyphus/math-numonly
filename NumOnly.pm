@@ -19,7 +19,7 @@ use overload
 '""'   => \&oload_stringify,
 ;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 require DynaLoader;
 Math::NumOnly->DynaLoader::bootstrap($VERSION);
