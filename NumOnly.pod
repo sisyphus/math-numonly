@@ -11,6 +11,10 @@
   involve one (or more) Math::NumOnly objects.
   Arithmetic in which none of the operands are Math::NumOnly objects will still
   proceed as per the normal rules.
+  It's unclear to me whether an operation between a Math::NumOnly object and some
+  other object (eg Math::BigInt, Math::GMP, Math::MPFR) should be allowed.
+  As it currently stands, such operations are not permitted.
+  It's just a silly, fun diversion - probably of little (if any) value.
 
 =head1 SYNOPSIS
 
@@ -30,7 +34,14 @@
 
 =head1 FUNCTIONS
 
-  No functions are provided, except for the subroutines that are responsible
+  my $ok = is_ok($arg); # used internally.
+
+    This function is not exported but can be accessed as Math::NumOnly($arg).
+    It returns true if $arg is allowed to be used in an arithmetic
+    operation with a Math::NumOnly object.
+    Else it returns false.
+
+  No other functions are provided, except for the subs that are responsible
   for overloading the  '+', '-', '*', '/', '**', '++', '--', '>=', '<=',
   '==', '!=', '>', '<', '<=>', '""', '+=', '-=', '*=', '/=', '**=' and
   perhaps other operations.
