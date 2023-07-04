@@ -1,7 +1,6 @@
 package Math::NumOnly;
 use strict;
 use warnings;
-use B;
 
 use overload
 '+'    => \&oload_add,
@@ -20,7 +19,11 @@ use overload
 '""'   => \&oload_stringify,
 ;
 
-$Math::NumOnly::VERSION = '0.01';
+our $VERSION = '0.01';
+
+require DynaLoader;
+Math::NumOnly->DynaLoader::bootstrap($VERSION);
+sub dl_load_flags {0}
 
 sub new {
   shift if(!ref($_[0]) && $_[0] eq "Math::NumOnly"); # 'new' has been called as a method
@@ -37,20 +40,6 @@ sub new {
   # given arg must be a valid IV or NV
   my %h = ('val' => shift);
   return bless(\%h, 'Math::NumOnly');
-}
-
-my %flags;
-{
-  no strict 'refs';
-  for my $flag (qw(
-    SVf_IOK
-    SVf_NOK
-    SVf_POK
-            )) {
-    if (defined &{'B::'.$flag}) {
-     $flags{$flag} = &{'B::'.$flag};
-    }
-  }
 }
 
 sub oload_add {
@@ -232,22 +221,6 @@ sub oload_spaceship {
      return ($_[1] <=> $_[0]->{val});
   }
   return ($_[0]->{val} <=> $_[1]);
-}
-
-
-sub is_ok {
-  return 0 unless defined $_[0];
-  return 1 if ref($_[0]) =~ /Math::NumOnly/;
-  my $flags = flags($_[0]);
-  return 0 if $flags =~ /SVf_POK/;
-  return 2 if $flags =~ /SVf_IOK/;
-  return 3 if $flags =~ /SVf_NOK/;
-  return 0;
-}
-
-sub flags {
-  my $flags = B::svref_2object(\($_[0]))->FLAGS;
-  join ' ', sort grep $flags & $flags{$_}, keys %flags;
 }
 
 1;
