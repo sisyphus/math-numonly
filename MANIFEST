@@ -2,4 +2,5 @@ MANIFEST
 Makefile.PL
 NumOnly.pm
 NumOnly.pod
-test.pl
+NumOnly.xs
+t/basic.t
