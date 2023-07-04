@@ -8,7 +8,7 @@
 =head1 DESCRIPTION
 
   This disallowance of numeric operations applies only to operations that
-  involve Math::NumOnly objects.
+  involve one (or more) Math::NumOnly objects.
   Arithmetic in which none of the operands are Math::NumOnly objects will still
   proceed as per the normal rules.
 
