@@ -1,4 +1,5 @@
 MANIFEST
+Changes
 Makefile.PL
 NumOnly.pm
 NumOnly.pod
