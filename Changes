@@ -1,6 +1,6 @@
 Changes file for Math::NumOnly
 
 0.02
-
+ - Fix typo in NumOnly.pod
 0.01
  - first release
