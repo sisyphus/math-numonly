@@ -36,7 +36,7 @@
 
   my $ok = is_ok($arg); # used internally.
 
-    This function is not exported but can be accessed as Math::NumOnly($arg).
+    This function is not exported but can be accessed as Math::NumOnly::is_ok($arg).
     It returns true if $arg is allowed to be used in an arithmetic
     operation with a Math::NumOnly object.
     Else it returns false.
